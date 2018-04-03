@@ -8,19 +8,21 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @title 		ApiVersion用于RequestMappingInfo拼接url
- * @description	规则：method优先级高于controller
+ * @title 		ClientVersion用于RequestMappingInfo
+ * @description	获取客户端传递过来的版本号
  * @usage		
  * @copyright	Copyright 2018  marsmob Corporation. All rights reserved.
  * @company		marsmob
  * @author		jevno
  * @create		2018年4月3日下午6:13:40
  */
-@Target({ElementType.METHOD, ElementType.TYPE})
+@Target({ElementType.METHOD,ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-public @interface ApiVersion {
+public @interface ClientVersion {
 	
-	String value() default "";
+	TerminalVersion[] value() default {};
+
+	String[] expression() default {};//从string表达式解析，和上述效果一致
 }
